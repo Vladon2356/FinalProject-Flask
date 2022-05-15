@@ -1,0 +1,16 @@
+{% extends 'base.html' %} 
+
+{% block slider_title %}Delete session {% endblock %}
+{% block content %}
+
+    <form action="{{ url_for('delete_sessoin') }}" method="post" class="form-control">
+        <select name="movie" class="form-select" aria-label="Default select example">
+
+        {% for session in sessions %}
+            <option value="{{ session.id }}">{{ session.id }}</option>
+        {% endfor %}
+        </select>
+        <br>
+    <input class="btn btn-danger" type="submit" value="Delete">
+    </form>
+{% endblock %}

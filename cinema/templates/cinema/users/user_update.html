@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %} Update user {% endblock %}
+{% block slider_title %}Update user{% endblock %}
+{% block content %}
+    <form action="{{ url_for('users.update_user', user_id=user.id) }}" method="post">
+        <div class="mb-3">
+            <label for="first_name" class="form-label">First name</label>
+            <input class="form-control" id="first_name" value="{{ user.first_name }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="last_name" class="form-label">Last name</label>
+            <input class="form-control" id="last_name" value="{{ user.last_name }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="age" class="form-label">Age</label>
+            <input class="form-control" id="age" value="{{ user.age }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input class="form-control" id="email" value="{{ user.email }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="old_password" class="form-label">Old password</label>
+            <input class="form-control" id="old_password" name="old_password">
+        </div>
+        <div class="mb-3">
+            <label for="new_password" class="form-label">New password</label>
+            <input class="form-control" id="new_password" name="new_password">
+        </div>
+            <label for="is_admin" class="form-label">Admin</label>
+        {% if user.is_admin %}
+            <input type="checkbox" name="is_admin" id="is_admin" checked>
+        {% else %}
+            <input type="checkbox" name="is_admin" >
+        {% endif %}
+        <br>
+        <input class="btn btn-success" type="submit" value="Update">
+    </form>
+{% endblock %}

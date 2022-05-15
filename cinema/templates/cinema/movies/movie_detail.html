@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block slider_title %}{{ movie.title }}{% endblock %}
+{% block content %}
+
+    <section class="sample-text-area">
+        <div class="container box_1170">
+            <h3 class="text-heading">{{ movie.title }}</h3>
+            <p class="sample-text">
+                {{ movie.description }}
+            </p>
+            <h3>Year : {{ movie.year }}</h3>
+            <h3>Duration : {{ movie.duration }}хв</h3>
+            <h3>Genres : {{ movie.genres }}</h3>
+            <h3>Actors : {{ movie.actors }}</h3>
+            <h3>Producer : {{ movie.producer }}</h3>
+            <h3>Rate : {{ movie.age_rating }}</h3>
+            <a href="{{ url_for('sessions.get_sessions_by_moive_id', movie_id=movie.id) }}"
+               class="btn btn-info">Sesssions</a>
+        </div>
+    </section>
+{% endblock %}

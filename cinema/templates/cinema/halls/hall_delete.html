@@ -1,0 +1,17 @@
+{% extends 'base.html' %} 
+
+{% block title %}Delete hall{% endblock %}
+
+{% block slider_title %}Delete hall {% endblock %}
+{% block content %}
+
+    <form action="{{ url_for('delete_hall', hall_id=hall.id) }}" method="post" class="form-control">
+        <select name="movie" class="form-select" aria-label="Default select example">
+        {% for hall in halls %}
+            <option value="{{ hall.id }}">{{ hall.title }}</option>
+        {% endfor %}
+        </select>
+        <br>
+    <input class="btn btn-danger" type="submit" value="Delete">
+    </form>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block slider_title %}Session{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
+                <div class="card" style="width: 50rem;">
+                    <div class="card-body">
+                        <h2 class="card-title">{{ session.movie.title }}</h2>
+                        <h5>Hall: {{ session.hall.title }}</h5>
+                        <p class="card-text">{{ session.movie.description }}</p>
+                        <h5>Rate: {{ session.movie.age_rating }}</h5>
+                        <h5>Date: {{ session.date }}</h5>
+                        <h5>Start: {{ session.start_at }}</h5>
+                        <h5>End: {{ session.end_at }}</h5>
+                        <h5>Ticket price: {{ session.tickets_price }}</h5>
+                        {% for ticket in tickets %}
+                              {{ ticket.sold }}
+                        {% endfor %}
+                    </div>
+                </div>
+                <a href="{{ url_for('tickets.buy_ticket_for_session', session_id=session.id) }}"
+                   class="btn btn-info">Buy ticket</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

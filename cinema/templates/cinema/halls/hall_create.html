@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %} Create hall {% endblock %}
+{% block slider_title %}Add hall{% endblock %}
+{% block content %}
+    <form action="{{ url_for('halls.create_hall') }}" method="post">
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input class="form-control" id="title" placeholder="Title" name="title" required>
+        </div>
+        <div class="mb-3">
+            <label for="rows" class="form-label">Rows </label>
+            <input class="form-control" id="rows" placeholder="Rows" name="rows" required>
+        </div>
+        <div class="mb-3">
+            <label for="palces" class="form-label">Palces</label>
+            <input class="form-control"  id="palces" placeholder="Palces" name="columns" required>
+        </div>
+        <input class="btn btn-success" type="submit" value="Create">
+    </form>
+{% endblock %}

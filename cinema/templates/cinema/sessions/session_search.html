@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block slider_title %}Session search{% endblock %}
+{% block content %}
+
+    <form action="{{ url_for('sessions.search_sessions') }}" method="post">
+        <div class="mb-3">
+            <label for="movie_id" class="form-label">Movie</label>
+            <select name="movie_id" class="form-select" aria-label="Default select example">
+                <option value="0" selected>---</option>
+                {% for movie in movies %}
+                    <option value="{{ movie.id }}">{{ movie.title }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <section class="container" style="margin: 0">
+            <div class="row form-group">
+                <label for="date" class="form-label">Date</label>
+                <div class="col-8">
+                    <div class="input-group date" id="datepicker">
+                        <input type="text" class="form-control" name="date">
+                        <span class="input-group-append">
+                            <span class="input-group-text bg-white">
+                                <i class="fa fa-calendar"></i>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script type="text/javascript">
+            $(function () {
+                $('#datepicker').datepicker();
+            });
+        </script>
+        <div class="mb-3">
+            <label for="genres" class="form-label">Genres</label>
+            <input class="form-control" name="genres" id="genres" placeholder="Genres">
+        </div>
+        <div class="mb-3">
+            <label for="actors" class="form-label">Actors</label>
+            <input class="form-control" id="actors" name="actors" placeholder="Actors">
+        </div>
+        <div class="mb-3">
+            <label for="producer" class="form-label">Producer</label>
+            <input class="form-control" id="producer" name="producer" placeholder="Producer">
+        </div>
+        <input class="btn btn-success" type="submit" value="Search">
+    </form>
+{% endblock %}

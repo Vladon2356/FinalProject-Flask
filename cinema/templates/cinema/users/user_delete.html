@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %} Delete profile {% endblock %}
+{% block slider_title %} Delete profile {% endblock %}
+
+{% block content %}
+    <form action="{{ url_for('users.delete_user', user_id=user.id) }}" method="post">
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{ user.first_name }} {{ user.last_name }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{ user.age }}</h6>
+            <h5 class="card-title">{{ user.email }}</h5>
+        </div>
+    </div>
+        <input class="btn btn-danger" type="submit" value="Delete">
+    </form>
+{% endblock %}

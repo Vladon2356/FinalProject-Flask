@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %} Profile {% endblock %}
+{% block slider_title %} Profile {% endblock %}
+{% block content %}
+    <div class="card" style="width: 50rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{ user.first_name }} {{ user.last_name }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{ user.age }}</h6>
+            <h5 class="card-title">{{ user.email }}</h5>
+            {% for ticket in tickets %}
+                  <div class="card" style="width: 50rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ ticket.movie.title }}</h5>
+                        <h5 class="card-title">{{ ticket.hall.title }}</h5>
+                        <h5 class="card-title">Row : {{ ticket.row }}</h5>
+                        <h5 class="card-title">Place : {{ ticket.column }}</h5>
+                        <h5 class="card-title">Price : {{ ticket.price }}</h5>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
