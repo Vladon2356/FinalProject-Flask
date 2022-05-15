@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Update hale{% endblock %}
+
+{% block slider_title %}Hall create{% endblock %}
+
+{% block content %}
+
+    <form action="{{ url_for('halls.update_hall', hall_id=hall.id) }}" method="post">
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input class="form-control" id="title" placeholder="Title" required value="{{ hall.title }}" name="title">
+        </div>
+        <div class="mb-3">
+            <label for="rows" class="form-label">Rows</label>
+            <input class="form-control" id="rows" placeholder="Rows" required value="{{ hall.rows }}" name="rows">
+        </div>
+        <div class="mb-3">
+            <label for="columns" class="form-label">Columns</label>
+            <input class="form-control" id="columns" required value="{{ hall.columns }}" name="columns">
+        </div>
+        <input class="btn btn-success" type="submit" value="Update">
+    </form>
+{% endblock %}

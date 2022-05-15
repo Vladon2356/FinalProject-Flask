@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+
+{% block title %}Message{% endblock %}
+{% block slider_title %}{{ message }}{% endblock %}
+{% block content %}
+<a href="{{ url_for('users.get_user', user_id=user.id) }}" class="btn btn-info">Profile</a>
+{% endblock %}

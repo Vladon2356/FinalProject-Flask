@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Ticket{% endblock %}
+{% block slider_title %}Ticket reserve{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <div class="card" style="width: 50rem;">
+                    <div class="card-body">
+                        <h2 class="card-title">{{ session.movie.title }}</h2>
+                        <h5>Hall: {{ session.hall.title }}</h5>
+                        <p class="card-text">{{ session.movie.description }}</p>
+                        <h5>Rate: {{ session.movie.age_rating }}</h5>
+                        <h5>Date: {{ session.date }}</h5>
+                        <h5>Start: {{ session.start_at }}</h5>
+                        <h5>End: {{ session.end_at }}</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <form action="{{ url_for('tickets.reserve_ticket_for_session', session_id=session.id) }}" method="post">
+
+            <div class="col-3">
+                <label for="row" class="form-label">Row</label>
+                <input class="form-control" id="row" name="row" placeholder="Row" required>
+            </div>
+            <div class="col-3">
+                <label for="column" class="form-label">Column</label>
+                <input class="form-control" id="column" name="column" placeholder="Column" required>
+                <input type="submit" value="To reserve" class="btn btn-success">
+            </div>
+        </form>
+
+    </div>
+
+
+{% endblock %}

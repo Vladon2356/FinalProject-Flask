@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block slider_title %}Session create{% endblock %}
+{% block content %}
+
+    <form action="{{ url_for('sessions.create_session') }}" method="post">
+        <div class="mb-3">
+            <label for="movie_id" class="form-label">Movie</label>
+            <select name="movie_id" class="form-select" aria-label="Default select example">
+                {% for movie in movies %}
+                    <option value="{{ movie.id }}">{{ movie.title }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="hall_id" class="form-label">Hall</label>
+            <select name="hall_id" class="form-select" aria-label="Default select example">
+                {% for hall in halls %}
+                    <option value="{{ hall.id }}">{{ hall.id }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <section class="container" style="margin: 0">
+            <div class="row form-group">
+                <label for="date" class="form-label">Date</label>
+                <div class="col-sm-4">
+                    <div class="input-group date" id="datepicker">
+                        <input type="text" class="form-control" name="date">
+                        <span class="input-group-append">
+                            <span class="input-group-text bg-white">
+                                <i class="fa fa-calendar"></i>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script type="text/javascript">
+            $(function () {
+                $('#datepicker').datepicker();
+            });
+        </script>
+        <div class="mb-3">
+            <label for="start_at" class="form-label">Start</label>
+            <input class="form-control" id="start_at" name="start_at" placeholder="H:m" required>
+        </div>
+        <div class="mb-3">
+            <label for="end_at" class="form-label">End</label>
+            <input class="form-control" id="end_at" name="end_at" placeholder="H:m" required>
+        </div>
+        <div class="mb-3">
+            <label for="tickets_price" class="form-label">Ticket price</label>
+            <input class="form-control" id="tickets_price" name="tickets_price" placeholder="ticke_price" required>
+        </div>
+        <input class="btn btn-success" type="submit" value="Create">
+    </form>
+{% endblock %}

@@ -1,0 +1,24 @@
+<header>
+    <div class="header-area ">
+        <div id="sticky-header" class="main-header-area">
+            <div class="container-fluid">
+                <div class="header_bottom_border">
+                    <div class="row align-items-center">
+                        <div class="col-xl-6 col-lg-7">
+                            <div class="main-menu  d-none d-lg-block">
+                                <nav>
+                                    <ul id="navigation">
+                                        <li><a href="{{ url_for('sessions.get_sessions') }}">Sessions</a></li>
+                                        <li><a href="{{ url_for('movies.get_movies_in_rental') }}">Now in rental</a></li>
+                                        <li><a href="{{ url_for('halls.get_halls') }}">Halls</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</header>

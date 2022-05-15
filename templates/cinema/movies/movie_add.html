@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %} Add Movie {% endblock %}
+{% block slider_title %}Add movie{% endblock %}
+{% block content %}
+
+    <form action="{{ url_for('movies.add_movie') }}" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input class="form-control" id="title" name="title" placeholder="Title" required>
+        </div>
+        <div class="mb-3">
+            <label for="duration" class="form-label">Duration </label>
+            <input class="form-control" id="duration" name="duration" placeholder="Duration" required>
+        </div>
+        <div class="mb-3">
+            <label for="poster" class="form-label">Add poster for movie</label>
+            <input class="form-control" type="file" id="poster" name="poster">
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description" name="description" rows="5" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="year" class="form-label">Year</label>
+            <input class="form-control" name="year" id="year" placeholder="Year" required>
+        </div>
+        <div class="mb-3">
+            <label for="genres" class="form-label">Genres</label>
+            <input class="form-control" name="genres" id="genres" placeholder="Genres" required>
+        </div>
+        <div class="mb-3">
+            <label for="age_rate" class="form-label">Age rate</label>
+              <select name="age_rating"  class="form-select" aria-label="Default select example" required>
+                    <option value="G">G</option>
+                    <option value="PG">PG</option>
+                    <option value="PG-13">PG-13</option>
+                    <option value="R">R</option>
+                    <option value="NC-17">NC-17</option>
+
+            </select>
+        </div>
+        <input class="btn btn-success" type="submit" value="Create">
+    </form>
+{% endblock %}
