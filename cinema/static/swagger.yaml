@@ -1,0 +1,324 @@
+swagger: '2.0'
+info:
+  title: Cinema Api
+  description: Api for Cinema
+  license:
+    name: BSD License
+  version: v1
+host: 127.0.0.1:5000
+schemes:
+  - http
+
+securityDefinitions:
+  Basic:
+    type: basic
+security:
+  - Basic: []
+paths:
+  /api/movies/:
+    get:
+      operationId: movies_list
+      description: Movie list
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/MovieList'
+      tags:
+        - movies
+    parameters: []
+  /api/movies/{movie_id}/:
+    get:
+      operationId: movies_read
+      description: Movie detail
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/MovieDetail'
+      tags:
+        - movies
+    parameters:
+      - name: movie_id
+        in: path
+        description: A unique integer value identifying this Movie.
+        required: true
+        type: integer
+  /api/sessions/:
+    get:
+      operationId: sessions_list
+      description: Sessions list
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/SessionList'
+      tags:
+        - sessions
+    parameters: []
+  /api/sessions/{session_id}/:
+    get:
+      operationId: sessions_read
+      description: Session detail
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/SessionDetail'
+      tags:
+        - sessions
+    parameters:
+      - name: session_id
+        in: path
+        description: A unique integer value identifying this Session.
+        required: true
+        type: integer
+  /api/users/:
+    get:
+      operationId: users_list
+      description: Users list
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/UsersList'
+      tags:
+        - users
+    parameters: []
+  /api/users/{user_id}/:
+    get:
+      operationId: users_read
+      description: User detail
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/UserDetail'
+      tags:
+        - users
+    parameters:
+      - name: user_id
+        in: path
+        description: A unique integer value identifying this user.
+        required: true
+        type: integer
+definitions:
+  Hall:
+    required:
+      - title
+      - rows
+      - columns
+    type: object
+    properties:
+      title:
+        title: Title
+        type: string
+        maxLength: 50
+        minLength: 1
+      rows:
+        title: Rows
+        type: integer
+        maximum: 32767
+        minimum: -32768
+      columns:
+        title: Columns
+        type: integer
+        maximum: 32767
+        minimum: -32768
+  MovieList:
+    required:
+      - title
+      - duration
+      - age_rating
+    type: object
+    properties:
+      title:
+        title: Title
+        type: string
+        maxLength: 100
+        minLength: 1
+      year:
+        title: Year
+        type: integer
+        maximum: 32767
+        minimum: -32768
+      duration:
+        title: Duration
+        type: integer
+        maximum: 32767
+        minimum: -32768
+      age_rating:
+        title: Age rating
+        type: string
+        enum:
+          - G
+          - PG
+          - PG-13
+          - R
+          - NC-17
+  MovieDetail:
+    required:
+      - genres
+      - actors
+      - producer
+      - title
+      - description
+      - duration
+      - age_rating
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      genres:
+        title: Genres
+        type: string
+      actors:
+        title: Actors
+        type: string
+      producer:
+        title: Producer
+        type: string
+
+      title:
+        title: Title
+        type: string
+        maxLength: 100
+        minLength: 1
+      description:
+        title: Description
+        type: string
+        minLength: 1
+      year:
+        title: Year
+        type: integer
+        maximum: 32767
+        minimum: -32768
+      duration:
+        title: Duration
+        type: integer
+        maximum: 32767
+        minimum: -32768
+      age_rating:
+        title: Age rating
+        type: string
+        enum:
+          - G
+          - PG
+          - PG-13
+          - R
+          - NC-17
+      in_rental:
+        title: In rental
+        type: boolean
+  SessionList:
+    required:
+      - date
+    type: object
+    properties:
+      movie:
+        $ref: '#/definitions/MovieDetail'
+      hall:
+        $ref: '#/definitions/Hall'
+      date:
+        title: Date
+        type: string
+        format: date
+  SessionDetail:
+    required:
+      - date
+      - start_at
+      - end_at
+      - ticket_price
+    type: object
+    properties:
+      movie:
+        $ref: '#/definitions/MovieDetail'
+      hall:
+        $ref: '#/definitions/Hall'
+      date:
+        title: Date
+        type: string
+        format: date
+      start_at:
+        title: Start at
+        type: string
+      end_at:
+        title: End at
+        type: string
+      ticket_price:
+        title: Ticket price
+        type: integer
+        maximum: 32767
+        minimum: -32768
+  UsersList:
+    required:
+      - username
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      username:
+        title: Username
+        description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
+        type: string
+        pattern: ^[\w.@+-]+$
+        maxLength: 150
+        minLength: 1
+      age:
+        title: Age
+        type: integer
+        maximum: 32767
+        minimum: -32768
+        x-nullable: true
+  UserDetail:
+    required:
+      - username
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      username:
+        title: Username
+        description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
+        type: string
+        pattern: ^[\w.@+-]+$
+        maxLength: 150
+        minLength: 1
+      first_name:
+        title: First name
+        type: string
+        maxLength: 150
+      last_name:
+        title: Last name
+        type: string
+        maxLength: 150
+      email:
+        title: Email address
+        type: string
+        format: email
+        maxLength: 254
+      is_active:
+        title: Active
+        description: Designates whether this user should be treated as active. Unselect this instead of deleting accounts.
+        type: boolean
+      age:
+        title: Age
+        type: integer
+        maximum: 32767
+        minimum: -32768
+        x-nullable: true
