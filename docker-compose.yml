@@ -1,0 +1,23 @@
+version: '3.7'
+
+services:
+  db:
+    image: postgres:13
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=Cinema
+  app:
+    build: .
+    command: bash -c "python run.py"
+    volumes:
+      - .:/app
+    ports:
+      - 5000:5000
+    depends_on:
+      - db
+volumes:
+  postgres_data:
